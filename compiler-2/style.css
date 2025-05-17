@@ -1,0 +1,413 @@
+:root {
+  --inWidth: 50%;
+  --outWidth: calc(100% - var(--inWidth));
+  --height: calc(70% - 12px);
+  --consoleHeight: calc(100% - var(--height));
+  --console-bg: #1e1e1e;
+  --console-text: #eaeaea;
+  --log-color-log: #ccc;
+  --log-color-info: #00f;
+  --log-color-warn: #ff0;
+  --log-color-error: #f00;
+}
+
+.custom-console {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #555;
+  overflow: hidden;
+}
+
+.console-controls {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+  background: #2b2b2b;
+  border-bottom: 1px solid #444;
+}
+
+.console-controls button {
+  background: #444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.console-output {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: var(--console-bg);
+}
+
+.log-entry {
+  padding: 5px 0;
+  border-bottom: 1px solid #333;
+  word-wrap: break-word;
+}
+
+.log-entry.log { color: var(--log-color-log); }
+.log-entry.info { color: var(--log-color-info); }
+.log-entry.warn { color: var(--log-color-warn); }
+.log-entry.error { color: var(--log-color-error); }
+
+.timestamp {
+  color: #888;
+  margin-right: 5px;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
+#helper,
+#verticalHelper {
+  transform: translate(-50%, -50%);
+  position: fixed;
+  height: 400px;
+  width: 400px;
+  top: -1000px;
+  z-index: 2147483647;
+  /* backdrop-filter: invert(); */
+}
+
+#helper {
+  cursor: ew-resize;
+}
+
+#verticalHelper {
+  cursor: ns-resize;
+}
+
+#head {
+  border-bottom: 1px #131419 solid;
+  background-color: #1E2028;
+  width: 100vw;
+  height: 40px;
+  display: flex;
+  place-content: center;
+}
+
+#name {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  position: absolute;
+  left: 0;
+  font-size: 35px;
+  color: #ffffff;
+}
+
+#nav {
+  background-color: #161A22;
+  /* Vertically align items in the nav */
+  align-items: center;
+  /* Ensure tabs are in a row */
+  display: flex;
+  width: 100vw;
+  height: 40px;
+}
+
+#nav #stuff {
+  justify-content: center;
+  position: absolute;
+  display: flex;
+  padding: 6px;
+  right: 0;
+}
+
+#nav button#fileCreator {
+  background-color: transparent;
+  anchor-name: --fileCreator;
+  border-radius: 200px;
+  margin-right: 10px;
+  font-weight: 900;
+  aspect-ratio: 1;
+  font-size: 28px;
+  aspect-ratio: 1;
+  color: white;
+  border: none;
+  width: 33px;
+}
+
+#nav button#fileCreator:hover {
+  background-color: #343745;
+}
+
+#nav .tab-container {
+  display: flex;
+  /* Arrange tabs horizontally */
+}
+
+#nav .tab {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-bottom: none;
+  margin-right: 5px;
+  padding: 8px 15px;
+  color: #7B7B7B;
+  cursor: pointer;
+}
+
+.tab input {
+  color: white;
+}
+
+.tab input::selection {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: black;
+}
+
+#nav .tab.active,
+#nav .tab:hover {
+  border-bottom: #5063F0 1px solid;
+  color: white;
+}
+
+#nav .tab button.close-tab {
+  margin-left: 10px;
+  background: none;
+  cursor: pointer;
+  font-size: 1em;
+  border: none;
+  padding: 0;
+}
+
+#main {
+  background-color: #5063F0;
+  height: calc(100% - 80px);
+  position: absolute;
+  width: 100%;
+}
+
+#input {
+  width: calc(var(--inWidth) - 5px);
+  background-color: black;
+  position: absolute;
+  height: 100%;
+  left: 0;
+}
+
+#browser {
+  width: calc(var(--outWidth) - 5px);
+  position: absolute;
+  background-color: aqua;
+  height: 100%;
+  right: 0;
+}
+
+#output {
+  background-color: white;
+  height: var(--height);
+  position: absolute;
+  width: 100%;
+  right: 0;
+}
+
+#console {
+  background-color: lightgrey;
+  height: var(--consoleHeight);
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+#divider {
+  left: calc(var(--inWidth) - 6px);
+  background-color: #343745;
+  position: absolute;
+  cursor: ew-resize;
+  height: 100%;
+  width: 12px;
+}
+
+#divider:hover,
+#divider:active,
+#verticalDivider:hover,
+#verticalDivider:active {
+  background-color: #2096F3;
+}
+
+#newFile {
+  inset: auto;
+  /* Or could be with box model */
+  position: absolute;
+  top: anchor(bottom);
+  left: anchor(left);
+  position-anchor: --fileCreator;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 2px 2px 10px 3px rgba(0, 0, 0, 0.3);
+}
+
+.option {
+  background-color: transparent;
+  text-align: start;
+  font-size: 18px;
+  display: block;
+  padding: 5px;
+  border: none;
+  width: 100%;
+}
+
+.option:hover {
+  background-color: #F5F5F5;
+}
+
+.file {
+  display: none;
+  /* Initially hide all files */
+  width: 100%;
+  /* Make sure they take full width of the input area */
+  height: 100%;
+  /* Make sure they take full height of the input area */
+}
+
+.file.active {
+  display: block;
+  /* Show the active file */
+}
+
+.settings {
+  display: inline-block;
+}
+
+.tab:hover>.settings>* {
+  visibility: visible;
+}
+
+.settings>* {
+  background-color: transparent;
+  visibility: hidden;
+  cursor: pointer;
+  color: #707070;
+  border: none;
+}
+
+.rename-input {
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  width: 80px;
+  /* Adjust as needed */
+}
+
+.rename-input.rename-error {
+  border: 1px solid red;
+}
+
+#run {
+  transition: background-color 200ms;
+  background-color: transparent;
+  border: 1px solid #B4D883;
+  font-weight: bolder;
+  align-self: center;
+  border-radius: 2px;
+  font-size: large;
+  color: white;
+}
+
+#run:hover {
+  background-color: #B4D883;
+}
+
+#editorSettings {
+  position: absolute;
+  right: 0;
+  align-self: center;
+}
+
+i {
+  font-size: 20px;
+  color: white;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+}
+
+#verticalDivider {
+  background-color: #343745;
+  cursor: ns-resize;
+  height: 12px;
+  width: 100%;
+}
+
+#verticalHelper:hover~#browser #console #verticalDivider {
+  background-color: #2096F3;
+}
+
+
+#outputFrame {
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
+#globalSettings {
+  color: #CCCCCC;
+  border-radius: 3px;
+  border: 5px solid #2F323F;
+  background-color: #161A22;
+  width: 80%;
+  height: 80%;
+}
+
+#globalSettings::backdrop {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+.switch {
+  background-color: #CCCCCC;
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 1;
+  left: 0;
+  right: -1;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}

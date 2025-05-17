@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Compiler</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+	<link rel="stylesheet" data-name="vs/editor/editor.main"
+		href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<header id="head"><span id="name">Compiler</span>
+		<div id="editorSettings">
+			<button id="settings" popovertarget="globalSettings"><i class="fa-solid fa-gear"></i></button>
+			<div id="globalSettings" popover>
+				<div id="consoleToggle" style="display: flex; flex-direction: row; margin-bottom: 10px;">
+					<label style="margin-right: 10px;">Console</label>
+					<label style="position: relative;" class="switch">
+						<input type="checkbox" style="display: inline-block;" class="switch">
+						<span class="slider"></span>
+					</label>
+				</div>
+				<!--
+				what we need, basically to do
+
+				console toggle
+
+				tab indent
+
+				font size
+
+				line numbers
+				word wrap
+				minimap
+				show whitespace
+				-->
+			</div>
+		</div>
+	</header>
+	<nav id="nav">
+		<div class="tab-container" id="tabs">
+		</div>
+		<div id="newFile" popover>
+			<button class="option" popovertarget="newFile" onclick="createNewFile('html')">New HTML file</button>
+			<button class="option" popovertarget="newFile" onclick="createNewFile('css')">New CSS file</button>
+			<button class="option" popovertarget="newFile" onclick="createNewFile('js')">New JS file</button>
+		</div>
+		<div id="stuff">
+			<button popovertarget="newFile" id="fileCreator">+</button>
+			<button id="run" onclick="previewFirstHtmlFile()">RUN</button>
+		</div>
+	</nav>
+	<div id="main">
+		<div id="input"></div>
+		<div id="helper"></div>
+		<div id="divider"></div>
+		<div id="browser">
+			<div id="output">
+				<iframe id="outputFrame"></iframe>
+			</div>
+			<div id="console">
+				<div id="verticalDivider"></div>
+				<div id="verticalHelper"></div>
+			</div>
+		</div>
+	</div>
+	<script src="resize.js"></script>
+	<script src="core.js"></script>
+	<script src="editor.js"></script>
+	<script src="file-actions.js"></script>
+	<script src="preview.js"></script>
+	<script src="console.js"></script>
+</body>
+
+</html>
