@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Compiler</title>
+	<title>typey type thing 2000</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 	<link rel="stylesheet" data-name="vs/editor/editor.main"
 		href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.52.2/min/vs/editor/editor.main.min.css">
@@ -12,17 +12,44 @@
 </head>
 
 <body>
-	<header id="head"><span id="name">Compiler</span>
+	<header id="head"><div style="position: absolute; left: 0;height: 40px; width: calc(100% - 60px); overflow-x: auto; overflow-y: hidden;"><span id="name" class="input" role="textbox" contenteditable spellcheck="false">typey type thing 2000</span></div>
 		<div id="editorSettings">
 			<button id="settings" popovertarget="globalSettings"><i class="fa-solid fa-gear"></i></button>
 			<div id="globalSettings" popover>
+				<button popovertarget="globalSettings"><i
+						style="font-size: 30px; color: red; position: absolute; right: 1px; top: 0; margin: 6px;"
+						class="fa-solid fa-xmark"></i></button>
+
 				<div id="consoleToggle" style="display: flex; flex-direction: row; margin-bottom: 10px;">
 					<label style="margin-right: 10px;">Console</label>
 					<label style="position: relative;" class="switch">
-						<input type="checkbox" style="display: inline-block;" class="switch">
+						<input checked id="consoleCheck" type="checkbox" style="display: inline-block;" class="switch">
 						<span class="slider"></span>
 					</label>
 				</div>
+
+				<div id="resetConsoleToggle"
+					style="display: flex;width:fit-content; flex-direction: row; margin-bottom: 10px;">
+					<tooltip-box text="Reset's console after run" position="bottom"></tooltip-box>
+					<label style="margin-right: 10px;">reset console
+
+					</label>
+					<label style="position: relative;" class="switch">
+						<input id="consoleResetCheck" type="checkbox" style="display: inline-block;" class="switch">
+						<span class="slider"></span>
+					</label>
+				</div>
+
+				<button class="compiler-button" onclick="download()">Download</button>
+				<button class="compiler-button" onclick="downloadJSON()">Export JSON
+					<tooltip-box text="JSON that can be used to transfer data" position="bottom"></tooltip-box>
+				</button>
+				<div class="upload-area" id="upload-area">
+					Upload JSON file here
+				</div>
+
+				<!-- Button for file input -->
+				<input type="file" id="file-input" class="file-input-btn" accept=".json" />
 				<!--
 				what we need, basically to do
 
@@ -67,8 +94,10 @@
 			</div>
 		</div>
 	</div>
+	<script src="zip.min.js"></script>
 	<script src="resize.min.js"></script>
 	<script src="core.min.js"></script>
+	<script src="importJSON.min.js"></script>
 	<script src="editor.min.js"></script>
 	<script src="file-actions.min.js"></script>
 	<script src="preview.min.js"></script>
