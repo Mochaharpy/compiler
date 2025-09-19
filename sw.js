@@ -11,6 +11,7 @@ const urlsToCache = [
   '/preview.min.js',
   '/resize.min.js',
   '/zip.min.js',
+  '/sw.min.js',
 ];
 
 self.addEventListener('install', (event) => {
